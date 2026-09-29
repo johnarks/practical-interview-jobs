@@ -1,6 +1,6 @@
 {
   "board": "practical-interview-jobs",
-  "count": 11,
+  "count": 14,
   "verified": "Sep 29, 2026",
   "jobs": [
     {
@@ -201,6 +201,60 @@
       "role": "Software Engineer, Early Career",
       "salary": "$138,400\u2013$198,000 + tokens",
       "url": "https://jobs.ashbyhq.com/uniswap/fb4d4137-f003-4669-beb7-2a5caca88012",
+      "verified": "Sep 29, 2026"
+    },
+    {
+      "company": "Authentic",
+      "date_source": "greenhouse updated_at",
+      "discovered": "2026-09-28",
+      "exp": "entry",
+      "fit": "React frontend + Python/FastAPI backend + PostgreSQL; insurtech Series A. Competitive salary + equity.",
+      "interview_confidence": "low",
+      "interview_evidence": "No company-specific interview reports found; early-stage startup standard (project deep-dive / take-home) assumed.",
+      "loc_cat": "nyc",
+      "location": "New York, NY (on-site)",
+      "posted": "2026-09-28",
+      "posted_at": "2026-09-28T09:34:57-04:00",
+      "posting_url": "https://job-boards.greenhouse.io/authenticinsurance/jobs/4114318009",
+      "role": "Software Engineer, New Grad",
+      "salary": null,
+      "url": "https://job-boards.greenhouse.io/authenticinsurance/jobs/4114318009",
+      "verified": "Sep 29, 2026"
+    },
+    {
+      "company": "Tebra",
+      "date_source": "greenhouse updated_at",
+      "discovered": "2026-09-28",
+      "exp": "entry",
+      "fit": "0\u20131 years (+1 yr internship desirable). Spring Boot/Java primary; Python (Django/FastAPI/Flask) preferred; AI-focused development a plus. Healthcare platform.",
+      "interview_confidence": "low",
+      "interview_evidence": "One Indeed report mentions \"coding tests, behavioral questioning, and system design\" \u2014 not clearly non-algorithmic.",
+      "loc_cat": "remote",
+      "location": "Remote, USA",
+      "posted": "2026-09-10",
+      "posted_at": "2026-09-10T12:51:56-04:00",
+      "posting_url": "https://job-boards.greenhouse.io/tebra/jobs/4726985005",
+      "role": "Software Engineer 1, Back-End",
+      "salary": "$80,500\u2013$92,000",
+      "url": "https://job-boards.greenhouse.io/tebra/jobs/4726985005",
+      "verified": "Sep 29, 2026"
+    },
+    {
+      "company": "Mitratech",
+      "date_source": "greenhouse updated_at",
+      "discovered": "2026-09-28",
+      "exp": "entry",
+      "fit": "0\u20132 years (internships count). Go + Ruby on Rails + PostgreSQL; debugging production escalations \u2014 his debugging/performance experience is directly relevant, though Go is not his stack.",
+      "interview_confidence": "low",
+      "interview_evidence": "No company-specific interview reports found.",
+      "loc_cat": "remote",
+      "location": "Remote, USA",
+      "posted": "2026-09-15",
+      "posted_at": "2026-09-15T13:31:31-04:00",
+      "posting_url": "https://job-boards.greenhouse.io/mitratech/jobs/8060928",
+      "role": "Software Engineer 1, AssureHire (Go)",
+      "salary": "$65,000\u2013$75,000 + bonus",
+      "url": "https://job-boards.greenhouse.io/mitratech/jobs/8060928",
       "verified": "Sep 29, 2026"
     }
   ]
