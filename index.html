@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Junior Dev Jobs — Practical Interviews, No LeetCode Gauntlet</title>
+<style>
+  :root { --bg:#0e1116; --card:#171c24; --border:#262d38; --text:#e8ecf1; --muted:#9aa4b2; --accent:#4da3ff; --green:#3ddc84; --amber:#ffb454; --purple:#b78cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+  header { padding:2.5rem 1.25rem 1.5rem; max-width:1100px; margin:0 auto; position:relative; }
+  .topbar { display:flex; align-items:center; gap:.9rem; }
+  #menu-btn { background:var(--card); border:1px solid var(--border); color:var(--text); border-radius:10px; font-size:1.25rem; padding:.4rem .75rem; cursor:pointer; line-height:1; }
+  #menu-btn:hover { border-color:var(--accent); }
+  header h1 { font-size:1.9rem; letter-spacing:-0.5px; }
+  header h1 span { color:var(--green); }
+  header p { color:var(--muted); margin-top:.5rem; max-width:760px; }
+  .meta { display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1rem; }
+  .pill { background:var(--card); border:1px solid var(--border); border-radius:999px; padding:.3rem .85rem; font-size:.82rem; color:var(--muted); }
+  .pill b { color:var(--text); }
+  .pill .ok { color:var(--green); font-weight:600; }
+  .how { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:.9rem 1.1rem; margin:1.2rem 0 0; font-size:.83rem; color:var(--muted); max-width:760px; }
+  .how b { color:var(--text); }
+  #scrim { position:fixed; inset:0; background:rgba(0,0,0,.55); opacity:0; pointer-events:none; transition:opacity .2s; z-index:40; }
+  #scrim.open { opacity:1; pointer-events:auto; }
+  #drawer { position:fixed; top:0; left:0; bottom:0; width:300px; max-width:85vw; background:#12161d; border-right:1px solid var(--border); z-index:50; transform:translateX(-105%); transition:transform .22s ease; display:flex; flex-direction:column; }
+  #drawer.open { transform:translateX(0); }
+  #drawer .dhead { padding:1.1rem 1.2rem; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+  #drawer .dhead b { font-size:1rem; }
+  #drawer .dhead button { background:none; border:0; color:var(--muted); font-size:1.3rem; cursor:pointer; }
+  #drawer nav { padding:.6rem; display:flex; flex-direction:column; gap:.3rem; overflow-y:auto; }
+  #drawer nav button { background:none; border:1px solid transparent; color:var(--text); text-align:left; padding:.75rem .9rem; border-radius:10px; font-size:.95rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:.5rem; }
+  #drawer nav button:hover { background:var(--card); }
+  #drawer nav button.active { background:var(--card); border-color:var(--accent); }
+  #drawer nav button .n { font-size:.78rem; color:var(--muted); background:var(--bg); border:1px solid var(--border); border-radius:999px; padding:.1rem .55rem; }
+  #drawer .dfoot { margin-top:auto; padding:1rem 1.2rem; border-top:1px solid var(--border); color:var(--muted); font-size:.78rem; }
+  .controls { max-width:1100px; margin:0 auto; padding:0 1.25rem 1rem; display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; }
+  .controls input, .controls select { background:var(--card); border:1px solid var(--border); color:var(--text); border-radius:10px; padding:.6rem .8rem; font-size:.9rem; }
+  .controls input { flex:1 1 240px; }
+  .sectionhead { max-width:1100px; margin:0 auto; padding:1rem 1.25rem .6rem; font-size:1.05rem; font-weight:700; }
+  .sectionhead small { display:block; font-weight:400; color:var(--muted); font-size:.82rem; margin-top:.15rem; }
+  .grid { max-width:1100px; margin:0 auto; padding:0 1.25rem 1rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1rem; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:1.1rem 1.15rem; display:flex; flex-direction:column; gap:.45rem; }
+  .card .company { font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; color:var(--accent); font-weight:700; }
+  .card h2 { font-size:1.02rem; line-height:1.35; }
+  .card .loc { color:var(--muted); font-size:.87rem; }
+  .card .salary { font-size:.9rem; color:var(--green); font-weight:600; }
+  .card .dateline { font-size:.85rem; color:var(--text); background:rgba(255,180,84,.08); border:1px solid #5c441a; border-radius:8px; padding:.45rem .65rem; }
+  .card .dateline b { color:var(--amber); }
+  .card .dateline small { display:block; color:var(--muted); font-size:.72rem; margin-top:.1rem; }
+  .card .fit { font-size:.82rem; color:var(--muted); border-left:2px solid var(--accent); padding-left:.55rem; }
+  .card .fit b { color:var(--text); font-weight:600; }
+  .card .process { font-size:.82rem; color:var(--muted); border-left:2px solid var(--purple); padding-left:.55rem; }
+  .card .process b { color:var(--text); font-weight:600; }
+  .card .tags { display:flex; gap:.4rem; flex-wrap:wrap; margin-top:.15rem; }
+  .tag { font-size:.72rem; border:1px solid var(--border); border-radius:6px; padding:.12rem .5rem; color:var(--muted); }
+  .tag.verified { color:var(--green); border-color:#1f4d33; }
+  .tag.conf-high { color:var(--green); border-color:#1f4d33; }
+  .tag.conf-medium { color:var(--amber); border-color:#5c441a; }
+  .tag.conf-low { color:var(--purple); border-color:#4a3566; }
+  .tag.exp-entry { color:var(--green); border-color:#1f4d33; }
+  .card .foot { margin-top:auto; padding-top:.7rem; display:flex; align-items:center; justify-content:space-between; gap:.6rem; flex-wrap:wrap; }
+  .verifiedline { color:var(--muted); font-size:.76rem; }
+  .btns { display:flex; gap:.5rem; }
+  .btn { text-decoration:none; padding:.5rem 1rem; border-radius:9px; font-size:.86rem; font-weight:600; }
+  .btn.posting { background:transparent; border:1px solid var(--accent); color:var(--accent); }
+  .btn.posting:hover { background:rgba(77,163,255,.12); }
+  .btn.apply { background:var(--accent); color:#06121f; }
+  .btn.apply:hover { filter:brightness(1.1); }
+  footer { max-width:1100px; margin:0 auto; padding:1rem 1.25rem 2.5rem; color:var(--muted); font-size:.8rem; }
+  .empty { grid-column:1/-1; text-align:center; color:var(--muted); padding:3rem 1rem; }
+  @media (max-width:560px){ header h1{font-size:1.5rem;} }
+</style>
+</head>
+<body>
+<!-- META-SHARED-NAV v2 : back button + hamburger linking all Meta apps.
+     Paste this block into every page (right after <body> is best). The
+     META-SHARED-NAV marker lets future updates find/replace it. -->
+<div id="meta-nav">
+  <button id="meta-back" title="Back to previous page" aria-label="Back">&#8592;</button>
+  <button id="meta-burger" title="All Meta tools" aria-label="All Meta tools">&#9776;</button>
+  <div id="meta-menu" hidden>
+    <div class="meta-menu-title">Meta tools</div>
+    <a href="https://aimarketmuse.vercel.app" data-app="aimarketmuse">&#x1F4C8; Stock Pick vs SPY</a>
+    <a href="https://leveraged-etf-radar.vercel.app/" data-app="etf-radar">&#x26A1; Leveraged ETF Radar</a>
+    <a href="https://ai-portfolio-research.vercel.app" data-app="ai-portfolio">&#x1F9E0; AI Portfolio Research</a>
+    <a href="https://sp1500-valuations.vercel.app" data-app="sp1500">&#x1F4CA; S&amp;P 1500 Valuations</a>
+    <a href="https://fresh-grad-jobs.vercel.app" data-app="jobs">&#x1F4BC; Fresh Grad Job Board</a>
+    <a href="https://practical-interview-jobs.vercel.app" data-app="practical-jobs">&#x1F9EA; Practical-Interview Jobs</a>
+    <a href="https://ai-sentiment-forecast.vercel.app" data-app="sentiment">&#x1F321; AI Sentiment Forecast</a>
+  </div>
+</div>
+<style>
+#meta-nav{position:fixed;top:10px;left:10px;z-index:99999;display:flex;gap:6px;align-items:flex-start;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#meta-nav button{width:38px;height:38px;border-radius:10px;border:1px solid rgba(128,128,128,.35);background:rgba(20,20,24,.78);color:#fff;font-size:18px;line-height:1;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:0}
+#meta-nav button:hover{background:rgba(50,50,58,.9)}
+#meta-menu{position:absolute;top:44px;left:0;min-width:240px;background:rgba(18,18,22,.96);border:1px solid rgba(128,128,128,.35);border-radius:12px;padding:6px;box-shadow:0 8px 28px rgba(0,0,0,.45)}
+#meta-menu .meta-menu-title{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#9a9aa5;padding:8px 10px 4px}
+#meta-menu a{display:flex;align-items:center;gap:10px;color:#f2f2f5;text-decoration:none;font-size:14px;padding:9px 10px;border-radius:8px;white-space:nowrap}
+#meta-menu a:hover{background:rgba(255,255,255,.1)}
+#meta-menu a.meta-current{background:rgba(90,140,255,.22);color:#fff;pointer-events:none}
+#meta-menu a.meta-current::after{content:"\2022 you are here";margin-left:auto;font-size:11px;color:#9a9aa5}
+</style>
+<script>
+(function(){
+  var nav=document.getElementById('meta-nav'); if(!nav||nav.dataset.done)return; nav.dataset.done="1";
+  var back=document.getElementById('meta-back'), burger=document.getElementById('meta-burger'), menu=document.getElementById('meta-menu');
+  back.addEventListener('click',function(){ history.back(); });
+  function closeMenu(){ menu.hidden=true; }
+  burger.addEventListener('click',function(e){ e.stopPropagation(); menu.hidden=!menu.hidden; });
+  document.addEventListener('click',function(e){ if(!nav.contains(e.target)) closeMenu(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeMenu(); });
+  var here=location.hostname+location.pathname;
+  menu.querySelectorAll('a[data-app]').forEach(function(a){
+    var u=a.getAttribute('href').replace(/^https?:\/\//,'').replace(/\/$/,'');
+    if(here.indexOf(u)===0){ a.classList.add('meta-current'); }
+  });
+})();
+</script>
+
+<div id="scrim"></div>
+<aside id="drawer" aria-label="Listings menu">
+  <div class="dhead"><b>☰ Listings</b><button id="drawer-close" aria-label="Close menu">✕</button></div>
+  <nav id="drawer-nav">
+    <button data-tab="all"><span>All practical roles</span><span class="n" id="n-all">–</span></button>
+    <button data-tab="verified-practical"><span>✅ Verified practical</span><span class="n" id="n-verified">–</span></button>
+    <button data-tab="likely-practical"><span>🔎 Likely practical</span><span class="n" id="n-likely">–</span></button>
+  </nav>
+  <div class="dfoot">Junior (0–2 yrs) software roles at non-FAANG companies, screened for practical interview processes — project deep-dives, take-homes, pair programming — instead of LeetCode gauntlets.</div>
+</aside>
+
+<header>
+  <div class="topbar">
+    <button id="menu-btn" aria-label="Open menu">☰</button>
+    <h1>🧪 Junior Dev Jobs <span>— practical interviews</span></h1>
+  </div>
+  <p>Junior (0–2 yrs) software roles at <b>non-FAANG</b> companies, screened for <b>practical interview processes</b> — project deep-dives, take-homes, pair programming — instead of LeetCode gauntlets. Every listing is live-verified on the employer's posting page. Interview confidence is marked honestly: green means real evidence, purple means assumed from company type.</p>
+  <div class="meta">
+    <div class="pill"><b id="count">–</b> roles tracked</div>
+    <div class="pill">Board launched <b>Sep 28, 2026</b></div>
+    <div class="pill"><span class="ok">✓</span> links live-verified</div>
+  </div>
+  <div class="how">
+    <b>How dates work:</b> each card shows <b>Posted:</b> with the date only when the posting itself displays one. When it doesn't, the card shows <b>Discovered:</b> — the day this board first found the role. The <b>link-verified</b> line is separate: the day the posting link was last confirmed working. Never confuse them.
+  </div>
+</header>
+<div class="controls">
+  <input id="q" type="search" placeholder="Search company or role…">
+  <select id="conf" title="Interview confidence">
+    <option value="">All confidence levels</option>
+    <option value="high">High confidence</option>
+    <option value="medium">Medium confidence</option>
+    <option value="low">Low confidence</option>
+  </select>
+  <select id="loccat" title="Location">
+    <option value="">All locations</option>
+    <option value="nyc">NYC area</option>
+    <option value="remote">Remote US</option>
+    <option value="nj">New Jersey</option>
+  </select>
+  <select id="sort">
+    <option value="newest">Newest discovered first</option>
+    <option value="company">Company A–Z</option>
+  </select>
+</div>
+
+<div class="sectionhead" id="sec-verified">✅ Verified practical<small>Real evidence the interview is practical — employer-described process or candidate reports.</small></div>
+<main class="grid" id="grid-verified"></main>
+<div class="sectionhead" id="sec-likely">🔎 Likely practical<small>Startup-standard processes (project deep-dives, take-homes) assumed — weaker direct evidence. Confirm with recent candidate reports before interviewing.</small></div>
+<main class="grid" id="grid-likely"></main>
+
+<footer>
+  Practical-interview job board. Interview evidence is summarized from the employer posting or cited candidate reports — confidence levels are honest, not marketing. Always confirm details on the employer's posting before applying. Not affiliated with any employer listed.
+</footer>
+<script>
+let JOBS = [];
+let tab = 'all';
+const gv = document.getElementById('grid-verified'), gl = document.getElementById('grid-likely');
+const q = document.getElementById('q'), confSel = document.getElementById('conf'),
+      locSel = document.getElementById('loccat'), sort = document.getElementById('sort');
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function fmtDate(iso){
+  if (!iso) return null;
+  const d = new Date(iso + 'T12:00:00');
+  const days = Math.floor((Date.now() - d.getTime()) / 86400000);
+  const rel = days <= 0 ? 'today' : days === 1 ? '1 day ago' : days + ' days ago';
+  return MONTHS[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() + ' (' + rel + ')';
+}
+
+function confTag(c){
+  if (c === 'high') return '<span class="tag conf-high">high-confidence process</span>';
+  if (c === 'medium') return '<span class="tag conf-medium">medium-confidence process</span>';
+  return '<span class="tag conf-low">low-confidence process</span>';
+}
+
+function card(j){
+  const el = document.createElement('div');
+  el.className = 'card';
+  const postingUrl = j.posting_url || j.url;
+  let dateHtml;
+  if (j.posted_at){
+    dateHtml = '<div class="dateline">📅 <b>Posted:</b> ' + fmtDate(j.posted_at.slice(0,10)) +
+      '<small>Date shown on the employer\'s posting (' + (j.date_source || 'posting') + ').</small></div>';
+  } else {
+    dateHtml = '<div class="dateline">📅 <b>Discovered:</b> ' + fmtDate(j.discovered) +
+      '<small>The posting does not display a date — this is when the board first found the role.</small></div>';
+  }
+  el.innerHTML =
+    '<div class="company"></div><h2></h2><div class="loc"></div>' +
+    (j.salary ? '<div class="salary"></div>' : '') +
+    dateHtml +
+    (j.fit ? '<div class="fit"><b>Why it fits:</b> <span></span></div>' : '') +
+    (j.interview_evidence ? '<div class="process"><b>Process:</b> <span></span></div>' : '') +
+    '<div class="tags"><span class="tag verified" title="The day this link was checked and confirmed working — not the posting date.">✓ link verified ' + (j.verified||'') + '</span>' +
+    confTag(j.interview_confidence) +
+    '<span class="tag exp-entry">0–2 yrs</span></div>' +
+    '<div class="foot"><span class="verifiedline"></span><span class="btns">' +
+    '<a class="btn posting" target="_blank" rel="noopener">📄 Job posting</a>' +
+    '<a class="btn apply" target="_blank" rel="noopener">Apply →</a></span></div>';
+  el.querySelector('.company').textContent = j.company;
+  el.querySelector('h2').textContent = j.role;
+  el.querySelector('.loc').textContent = '📍 ' + j.location;
+  if (j.salary) el.querySelector('.salary').textContent = '💰 ' + j.salary;
+  if (j.fit) el.querySelector('.fit span').textContent = j.fit;
+  if (j.interview_evidence) el.querySelector('.process span').textContent = j.interview_evidence;
+  el.querySelector('.btn.posting').href = postingUrl;
+  el.querySelector('.btn.apply').href = j.url;
+  return el;
+}
+
+function matches(j){
+  const term = q.value.trim().toLowerCase();
+  if (term && !(j.company+' '+j.role).toLowerCase().includes(term)) return false;
+  if (confSel.value && j.interview_confidence !== confSel.value) return false;
+  if (locSel.value && j.loc_cat !== locSel.value) return false;
+  return true;
+}
+
+function sortFn(a, b){
+  if (sort.value === 'company') return a.company.localeCompare(b.company);
+  return (b.discovered || '').localeCompare(a.discovered || '');
+}
+
+function sectionOf(j){
+  // "Verified practical" = good evidence: medium or high confidence
+  return (j.interview_confidence === 'high' || j.interview_confidence === 'medium') ? 'verified' : 'likely';
+}
+
+function render(){
+  const list = JOBS.filter(j => tab === 'all' || sectionOf(j) === (tab === 'verified-practical' ? 'verified' : 'likely'));
+  const v = list.filter(j => sectionOf(j) === 'verified' && matches(j)).sort(sortFn);
+  const l = list.filter(j => sectionOf(j) === 'likely' && matches(j)).sort(sortFn);
+  document.getElementById('count').textContent = (v.length + l.length);
+  gv.innerHTML = v.length ? '' : '<div class="empty">No verified-practical roles match your filters.</div>';
+  gl.innerHTML = l.length ? '' : '<div class="empty">No likely-practical roles match your filters.</div>';
+  v.forEach(j => gv.appendChild(card(j)));
+  l.forEach(j => gl.appendChild(card(j)));
+  document.getElementById('sec-verified').style.display = (tab === 'likely-practical') ? 'none' : '';
+  gv.style.display = (tab === 'likely-practical') ? 'none' : '';
+  document.getElementById('sec-likely').style.display = (tab === 'verified-practical') ? 'none' : '';
+  gl.style.display = (tab === 'verified-practical') ? 'none' : '';
+}
+
+function updateCounts(){
+  document.getElementById('n-all').textContent = JOBS.length;
+  document.getElementById('n-verified').textContent = JOBS.filter(j => sectionOf(j) === 'verified').length;
+  document.getElementById('n-likely').textContent = JOBS.filter(j => sectionOf(j) === 'likely').length;
+}
+
+function setTab(t){
+  tab = t;
+  document.querySelectorAll('#drawer-nav button').forEach(b => b.classList.toggle('active', b.dataset.tab === t));
+  render();
+  closeDrawer();
+}
+
+const drawer = document.getElementById('drawer'), scrim = document.getElementById('scrim');
+function openDrawer(){ drawer.classList.add('open'); scrim.classList.add('open'); }
+function closeDrawer(){ drawer.classList.remove('open'); scrim.classList.remove('open'); }
+document.getElementById('menu-btn').addEventListener('click', openDrawer);
+document.getElementById('drawer-close').addEventListener('click', closeDrawer);
+scrim.addEventListener('click', closeDrawer);
+document.querySelectorAll('#drawer-nav button').forEach(b => b.addEventListener('click', () => setTab(b.dataset.tab)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+q.addEventListener('input', render);
+confSel.addEventListener('change', render);
+locSel.addEventListener('change', render);
+sort.addEventListener('change', render);
+
+fetch('jobs.json').then(r => r.json()).then(d => {
+  JOBS = d.jobs || [];
+  updateCounts();
+  setTab('all');
+});
+</script>
+</body>
+</html>
