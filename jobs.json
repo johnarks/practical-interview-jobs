@@ -1,6 +1,6 @@
 {
   "board": "practical-interview-jobs",
-  "count": 15,
+  "count": 14,
   "verified": "Sep 29, 2026",
   "jobs": [
     {
@@ -256,24 +256,6 @@
       "salary": "$65,000\u2013$75,000 + bonus",
       "url": "https://job-boards.greenhouse.io/mitratech/jobs/8060928",
       "verified": "Sep 29, 2026"
-    },
-    {
-      "company": "Progressive",
-      "role": "IT Software Developer Associate - Entry Level",
-      "location": "Remote, United States",
-      "url": "https://earlycareers.progressive.com/search/category/technology/jobs",
-      "posting_url": "https://earlycareers.progressive.com/search/category/technology/jobs",
-      "posted": "2026-09-02",
-      "posted_at": "2026-09-02",
-      "date_source": "shown on employer board",
-      "verified": "Sep 29, 2026",
-      "exp": "entry",
-      "fit": "Entry-level associate role at a large insurer; remote-US. Stack per interview guide: Java/Spring, Python, JavaScript/Angular, AWS. Conversational process plays to his internship-project experience. Apply via the early-careers technology search page \u2014 confirm the specific req on its detail page.",
-      "salary": null,
-      "interview_evidence": "InterviewQuery guide: STAR-heavy manager rounds plus conversational technical discussion on the listed stack, feature design, and scaling \u2014 explicitly not LeetCode-style. Glassdoor reports conversational backend/frontend/OOP questions. (interviewquery.com + Glassdoor)",
-      "interview_confidence": "medium",
-      "discovered": "2026-09-29",
-      "loc_cat": "remote"
     }
   ]
 }
