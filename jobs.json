@@ -4,7 +4,7 @@
   "verified": "Oct 16, 2026",
   "jobs": [
     {
-      "company": "Maximor AI",
+      "company": "Hyphenate",
       "date_source": "ashby publishedAt",
       "discovered": "2026-09-28",
       "exp": "entry",
@@ -15,11 +15,12 @@
       "location": "New York, NY (in-person)",
       "posted": "2026-08-25",
       "posted_at": "2026-08-25T15:31:13.136+00:00",
-      "posting_url": "https://jobs.ashbyhq.com/maximor/67d0c7d0-fddb-4b8d-aed8-0647337a988e",
+      "posting_url": "https://jobs.ashbyhq.com/hyphenate/67d0c7d0-fddb-4b8d-aed8-0647337a988e",
       "role": "Software Engineer (New Grad)",
       "salary": null,
-      "url": "https://jobs.ashbyhq.com/maximor/67d0c7d0-fddb-4b8d-aed8-0647337a988e",
-      "verified": "Oct 16, 2026"
+      "url": "https://jobs.ashbyhq.com/hyphenate/67d0c7d0-fddb-4b8d-aed8-0647337a988e",
+      "verified": "Oct 16, 2026",
+      "note": "Company rebranded Maximor AI -> Hyphenate; posting URL updated 2026-10-16"
     },
     {
       "company": "American Express",
